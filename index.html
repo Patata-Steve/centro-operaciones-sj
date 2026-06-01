@@ -12,6 +12,9 @@
       --text:#e8eef8;
       --muted:#9fb0c7;
       --accent:#38bdf8;
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --danger:#ef4444;
       --border:#24324a;
     }
     *{box-sizing:border-box}
@@ -22,10 +25,10 @@
       color:var(--text);
     }
     header{
-      padding:32px 20px;
+      padding:30px 20px;
       text-align:center;
       border-bottom:1px solid var(--border);
-      background:rgba(5,12,24,.75);
+      background:rgba(5,12,24,.78);
       position:sticky;
       top:0;
       backdrop-filter:blur(10px);
@@ -33,7 +36,21 @@
     }
     header h1{margin:0;font-size:32px;letter-spacing:.5px}
     header p{margin:8px 0 0;color:var(--muted)}
-    main{max-width:1200px;margin:auto;padding:28px 18px 60px}
+    main{max-width:1250px;margin:auto;padding:28px 18px 60px}
+    .note{
+      background:rgba(34,197,94,.08);
+      border:1px solid rgba(34,197,94,.35);
+      border-radius:16px;
+      padding:14px 16px;
+      color:#c7f9d4;
+      margin-bottom:18px;
+    }
+    .tools{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      margin-bottom:22px;
+    }
     .search{
       width:100%;
       padding:15px 18px;
@@ -43,13 +60,23 @@
       color:var(--text);
       font-size:16px;
       outline:none;
-      margin-bottom:24px;
     }
+    button{
+      border:1px solid var(--border);
+      background:#0e1b2e;
+      color:var(--text);
+      border-radius:14px;
+      padding:0 18px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+    button:hover{border-color:var(--accent);background:rgba(56,189,248,.10)}
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
       gap:18px;
     }
+    .wide{grid-column:1/-1}
     .card{
       background:linear-gradient(180deg,var(--card),var(--card2));
       border:1px solid var(--border);
@@ -63,6 +90,11 @@
       border-bottom:1px solid var(--border);
       padding-bottom:10px;
     }
+    .links-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:8px 12px;
+    }
     a{
       display:block;
       color:var(--text);
@@ -71,7 +103,9 @@
       border:1px solid transparent;
       border-radius:12px;
       margin:7px 0;
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.035);
+      font-weight:600;
+      font-size:14px;
     }
     a:hover{
       border-color:var(--accent);
@@ -84,23 +118,23 @@
       background:var(--accent);
       padding:3px 8px;
       border-radius:999px;
-      font-size:12px;
+      font-size:11px;
       margin-left:6px;
       font-weight:bold;
     }
-    .note{
-      background:rgba(34,197,94,.08);
-      border:1px solid rgba(34,197,94,.35);
-      border-radius:16px;
-      padding:14px 16px;
-      color:#c7f9d4;
-      margin-bottom:22px;
-    }
+    .red{background:rgba(239,68,68,.10)}
+    .yellow{background:rgba(245,158,11,.10)}
+    .green{background:rgba(34,197,94,.10)}
     footer{
       text-align:center;
       color:var(--muted);
       padding:25px;
       border-top:1px solid var(--border);
+    }
+    @media(max-width:650px){
+      .tools{grid-template-columns:1fr}
+      button{padding:14px}
+      header h1{font-size:24px}
     }
   </style>
 </head>
@@ -115,9 +149,58 @@
       Panel personal de consulta. Verificar siempre la fuente oficial antes de incorporar datos a informes.
     </div>
 
-    <input class="search" id="search" placeholder="Buscar: diario, judicial, OSINT, forense, hash, IMEI..." onkeyup="filterLinks()">
+    <div class="tools">
+      <input class="search" id="search" placeholder="Buscar dentro del panel: diario, judicial, OSINT, forense, hash, IMEI..." onkeyup="filterLinks()">
+      <button onclick="clearSearch()">Limpiar</button>
+    </div>
 
     <section class="grid">
+
+      <div class="card wide">
+        <h2>🚨 Monitoreo Diario - Búsquedas rápidas en San Juan</h2>
+        <div class="links-grid">
+          <a class="red" href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+estafa+OR+estafas" target="_blank">Estafas - Diario de Cuyo</a>
+          <a class="red" href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+estafa+OR+estafas" target="_blank">Estafas - Tiempo de San Juan</a>
+          <a class="red" href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+estafa+OR+estafas" target="_blank">Estafas - 0264 Noticias</a>
+          <a class="red" href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+estafa+OR+estafas" target="_blank">Estafas - Canal 13</a>
+
+          <a class="yellow" href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - Diario de Cuyo</a>
+          <a class="yellow" href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - Tiempo de San Juan</a>
+          <a class="yellow" href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - 0264 Noticias</a>
+          <a class="yellow" href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - Canal 13</a>
+
+          <a href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - Diario de Cuyo</a>
+          <a href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - Tiempo de SJ</a>
+          <a href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - 0264</a>
+          <a href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - Canal 13</a>
+
+          <a href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - Diario de Cuyo</a>
+          <a href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - Tiempo de SJ</a>
+          <a href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - 0264</a>
+          <a href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - Canal 13</a>
+
+          <a class="green" href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - Diario de Cuyo</a>
+          <a class="green" href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - Tiempo de SJ</a>
+          <a class="green" href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - 0264</a>
+          <a class="green" href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - Canal 13</a>
+        </div>
+      </div>
+
+      <div class="card wide">
+        <h2>🔍 Buscador OSINT personalizado</h2>
+        <div class="tools">
+          <input class="search" id="osintQuery" placeholder="Escribí nombre, número, alias, dominio, CUIT, IMEI o palabra clave...">
+          <button onclick="buscarGoogle()">Buscar en Google</button>
+        </div>
+        <div class="links-grid">
+          <a href="#" onclick="buscarSitio('diariodecuyo.com.ar')">Buscar en Diario de Cuyo</a>
+          <a href="#" onclick="buscarSitio('tiempodesanjuan.com')">Buscar en Tiempo de San Juan</a>
+          <a href="#" onclick="buscarSitio('0264noticias.com.ar')">Buscar en 0264 Noticias</a>
+          <a href="#" onclick="buscarSitio('canal13sanjuan.com')">Buscar en Canal 13</a>
+          <a href="#" onclick="buscarExacto()">Buscar frase exacta</a>
+          <a href="#" onclick="buscarRedes()">Buscar posible perfil/redes</a>
+        </div>
+      </div>
 
       <div class="card">
         <h2>📰 Noticias San Juan</h2>
@@ -184,14 +267,6 @@
         <a href="#" onclick="alert('Espacio reservado para cadena de custodia')">Cadena de custodia</a>
       </div>
 
-      <div class="card">
-        <h2>⚙️ Accesos rápidos</h2>
-        <a href="https://mail.google.com" target="_blank">Gmail</a>
-        <a href="https://drive.google.com" target="_blank">Google Drive</a>
-        <a href="https://calendar.google.com" target="_blank">Google Calendar</a>
-        <a href="https://github.com" target="_blank">GitHub</a>
-      </div>
-
     </section>
   </main>
 
@@ -206,6 +281,23 @@
       links.forEach(a => {
         a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
       });
+    }
+    function clearSearch(){
+      document.getElementById("search").value = "";
+      filterLinks();
+    }
+    function q(){
+      return document.getElementById("osintQuery").value.trim();
+    }
+    function openGoogle(query){
+      if(!query){ alert("Ingresá primero un dato a buscar."); return; }
+      window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
+    }
+    function buscarGoogle(){ openGoogle(q()); }
+    function buscarSitio(site){ openGoogle("site:" + site + " " + q()); }
+    function buscarExacto(){ openGoogle('"' + q() + '"'); }
+    function buscarRedes(){
+      openGoogle('"' + q() + '" (site:facebook.com OR site:instagram.com OR site:tiktok.com OR site:x.com OR site:linkedin.com)');
     }
   </script>
 </body>
