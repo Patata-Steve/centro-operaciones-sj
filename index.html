@@ -1,64 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centro de Operaciones SJ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Operaciones Digitales SJ</title>
   <style>
     :root{
-      --bg:#07111f;
-      --card:#101b2d;
-      --card2:#0d1727;
-      --text:#e8eef8;
-      --muted:#9fb0c7;
+      --bg:#050b14;
+      --panel:#0b1626;
+      --panel2:#101d31;
+      --card:#111f35;
+      --text:#eaf2ff;
+      --muted:#9fb3cc;
       --accent:#38bdf8;
-      --ok:#22c55e;
-      --warn:#f59e0b;
+      --accent2:#22c55e;
       --danger:#ef4444;
-      --border:#24324a;
+      --warn:#f59e0b;
+      --border:#263852;
+      --shadow:0 18px 40px rgba(0,0,0,.34);
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:radial-gradient(circle at top,#10243d 0,#07111f 45%,#030712 100%);
+      background:radial-gradient(circle at top left,#12365c 0,#07111f 34%,#030712 100%);
       color:var(--text);
     }
-    header{
-      padding:30px 20px;
-      text-align:center;
-      border-bottom:1px solid var(--border);
-      background:rgba(5,12,24,.78);
+    .layout{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+    aside{
+      background:rgba(5,12,24,.86);
+      border-right:1px solid var(--border);
+      padding:22px 16px;
       position:sticky;
       top:0;
-      backdrop-filter:blur(10px);
-      z-index:10;
+      height:100vh;
+      overflow:auto;
+      backdrop-filter:blur(12px);
     }
-    header h1{margin:0;font-size:32px;letter-spacing:.5px}
-    header p{margin:8px 0 0;color:var(--muted)}
-    main{max-width:1250px;margin:auto;padding:28px 18px 60px}
-    .note{
-      background:rgba(34,197,94,.08);
-      border:1px solid rgba(34,197,94,.35);
-      border-radius:16px;
-      padding:14px 16px;
-      color:#c7f9d4;
-      margin-bottom:18px;
+    .brand{
+      padding:12px 10px 20px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:14px;
     }
-    .tools{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:10px;
-      margin-bottom:22px;
+    .brand h1{font-size:20px;margin:0 0 6px;line-height:1.2}
+    .brand p{font-size:13px;color:var(--muted);margin:0}
+    nav a{
+      display:block;
+      color:var(--text);
+      text-decoration:none;
+      padding:11px 12px;
+      border-radius:12px;
+      margin:5px 0;
+      font-weight:700;
+      border:1px solid transparent;
     }
-    .search{
+    nav a:hover{background:rgba(56,189,248,.10);border-color:rgba(56,189,248,.35)}
+    main{padding:26px;max-width:1450px;width:100%;margin:auto}
+    .hero{
+      background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(34,197,94,.08));
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+    }
+    .hero h2{font-size:32px;margin:0 0 8px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .topbar{display:grid;grid-template-columns:1fr auto;gap:10px}
+    input{
       width:100%;
-      padding:15px 18px;
+      padding:15px 16px;
       border-radius:14px;
       border:1px solid var(--border);
       background:#081322;
       color:var(--text);
-      font-size:16px;
+      font-size:15px;
       outline:none;
     }
     button{
@@ -71,234 +87,328 @@
       font-weight:bold;
     }
     button:hover{border-color:var(--accent);background:rgba(56,189,248,.10)}
-    .grid{
+    .stats{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-      gap:18px;
+      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:12px;
+      margin:16px 0 22px;
     }
-    .wide{grid-column:1/-1}
-    .card{
-      background:linear-gradient(180deg,var(--card),var(--card2));
+    .stat{
+      background:rgba(255,255,255,.035);
       border:1px solid var(--border);
       border-radius:18px;
-      padding:18px;
-      box-shadow:0 14px 30px rgba(0,0,0,.25);
+      padding:14px;
     }
-    .card h2{
-      margin:0 0 14px;
-      font-size:20px;
+    .stat b{display:block;font-size:24px;color:var(--accent)}
+    .stat span{color:var(--muted);font-size:13px}
+    section{
+      background:rgba(11,22,38,.82);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px;
+      margin:16px 0;
+      box-shadow:var(--shadow);
+    }
+    section h3{
+      margin:0 0 12px;
+      font-size:22px;
       border-bottom:1px solid var(--border);
       padding-bottom:10px;
     }
-    .links-grid{
+    .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-      gap:8px 12px;
+      grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+      gap:10px;
     }
-    a{
+    .link{
       display:block;
       color:var(--text);
       text-decoration:none;
-      padding:11px 12px;
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.025));
       border:1px solid transparent;
-      border-radius:12px;
-      margin:7px 0;
-      background:rgba(255,255,255,.035);
-      font-weight:600;
-      font-size:14px;
+      border-radius:14px;
+      padding:12px;
+      min-height:46px;
+      font-weight:700;
     }
-    a:hover{
+    .link small{display:block;color:var(--muted);font-weight:400;margin-top:4px;line-height:1.25}
+    .link:hover{
       border-color:var(--accent);
       background:rgba(56,189,248,.10);
       transform:translateY(-1px);
     }
-    .tag{
+    .pill{
       display:inline-block;
-      color:#06121f;
-      background:var(--accent);
+      font-size:11px;
       padding:3px 8px;
       border-radius:999px;
-      font-size:11px;
       margin-left:6px;
-      font-weight:bold;
+      background:var(--accent);
+      color:#04111f;
+      font-weight:900;
     }
-    .red{background:rgba(239,68,68,.10)}
-    .yellow{background:rgba(245,158,11,.10)}
-    .green{background:rgba(34,197,94,.10)}
+    .danger{border-left:4px solid var(--danger)}
+    .warn{border-left:4px solid var(--warn)}
+    .ok{border-left:4px solid var(--accent2)}
+    .osintbox{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      margin-bottom:12px;
+    }
     footer{
-      text-align:center;
       color:var(--muted);
-      padding:25px;
-      border-top:1px solid var(--border);
+      text-align:center;
+      padding:24px 0 8px;
+      font-size:13px;
     }
-    @media(max-width:650px){
-      .tools{grid-template-columns:1fr}
+    .hidden{display:none!important}
+    @media(max-width:900px){
+      .layout{grid-template-columns:1fr}
+      aside{position:relative;height:auto}
+      nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:4px}
+      main{padding:16px}
+      .hero h2{font-size:25px}
+      .topbar,.osintbox{grid-template-columns:1fr}
       button{padding:14px}
-      header h1{font-size:24px}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🚓 Centro de Operaciones SJ</h1>
-    <p>Repositorio rápido de noticias, organismos, OSINT y recursos forenses</p>
-  </header>
+<div class="layout">
+  <aside>
+    <div class="brand">
+      <h1>🚓 COD-SJ</h1>
+      <p>Centro de Operaciones Digitales · Fuentes abiertas</p>
+    </div>
+    <nav>
+      <a href="#monitoreo">🚨 Monitoreo</a>
+      <a href="#cuyo">📰 Región Cuyo</a>
+      <a href="#nacion">🇦🇷 Nación</a>
+      <a href="#internacional">🌎 Internacional</a>
+      <a href="#judicial">⚖️ Judicial</a>
+      <a href="#osint">🔎 OSINT</a>
+      <a href="#ciber">🛡️ Ciberseguridad</a>
+      <a href="#telefonia">📱 Telefonía</a>
+      <a href="#forense">💾 Forense</a>
+      <a href="#geo">🗺️ Geolocalización</a>
+    </nav>
+  </aside>
 
   <main>
-    <div class="note">
-      Panel personal de consulta. Verificar siempre la fuente oficial antes de incorporar datos a informes.
+    <div class="hero">
+      <h2>Centro de Operaciones Digitales SJ</h2>
+      <p>Repositorio público de noticias, fuentes abiertas, organismos y recursos técnicos. No incluir documentación interna ni plantillas sensibles.</p>
+      <div class="topbar">
+        <input id="filter" onkeyup="filterAll()" placeholder="Filtrar dentro del portal: estafa, IMEI, fiscalía, Mendoza, Reuters, hash..." />
+        <button onclick="clearFilter()">Limpiar</button>
+      </div>
     </div>
 
-    <div class="tools">
-      <input class="search" id="search" placeholder="Buscar dentro del panel: diario, judicial, OSINT, forense, hash, IMEI..." onkeyup="filterLinks()">
-      <button onclick="clearSearch()">Limpiar</button>
+    <div class="stats">
+      <div class="stat"><b id="countLinks">0</b><span>recursos cargados</span></div>
+      <div class="stat"><b>10</b><span>módulos</span></div>
+      <div class="stat"><b>OSINT</b><span>fuentes abiertas</span></div>
+      <div class="stat"><b>v2.0</b><span>versión pública</span></div>
     </div>
 
-    <section class="grid">
-
-      <div class="card wide">
-        <h2>🚨 Monitoreo Diario - Búsquedas rápidas en San Juan</h2>
-        <div class="links-grid">
-          <a class="red" href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+estafa+OR+estafas" target="_blank">Estafas - Diario de Cuyo</a>
-          <a class="red" href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+estafa+OR+estafas" target="_blank">Estafas - Tiempo de San Juan</a>
-          <a class="red" href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+estafa+OR+estafas" target="_blank">Estafas - 0264 Noticias</a>
-          <a class="red" href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+estafa+OR+estafas" target="_blank">Estafas - Canal 13</a>
-
-          <a class="yellow" href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - Diario de Cuyo</a>
-          <a class="yellow" href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - Tiempo de San Juan</a>
-          <a class="yellow" href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - 0264 Noticias</a>
-          <a class="yellow" href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos - Canal 13</a>
-
-          <a href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - Diario de Cuyo</a>
-          <a href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - Tiempo de SJ</a>
-          <a href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - 0264</a>
-          <a href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+delitos+inform%C3%A1ticos+OR+ciberestafa+OR+phishing" target="_blank">Delitos informáticos - Canal 13</a>
-
-          <a href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - Diario de Cuyo</a>
-          <a href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - Tiempo de SJ</a>
-          <a href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - 0264</a>
-          <a href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+persona+buscada+OR+buscan+a" target="_blank">Personas buscadas - Canal 13</a>
-
-          <a class="green" href="https://www.google.com/search?q=site%3Adiariodecuyo.com.ar+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - Diario de Cuyo</a>
-          <a class="green" href="https://www.google.com/search?q=site%3Atiempodesanjuan.com+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - Tiempo de SJ</a>
-          <a class="green" href="https://www.google.com/search?q=site%3A0264noticias.com.ar+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - 0264</a>
-          <a class="green" href="https://www.google.com/search?q=site%3Acanal13sanjuan.com+San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes - Canal 13</a>
-        </div>
+    <section id="monitoreo">
+      <h3>🚨 Monitoreo Diario - Búsquedas rápidas</h3>
+      <div class="grid">
+        <a class="link danger" href="https://www.google.com/search?q=San+Juan+estafa+OR+estafas+site%3Adiariodecuyo.com.ar+OR+site%3Atiempodesanjuan.com+OR+site%3A0264noticias.com.ar+OR+site%3Acanal13sanjuan.com" target="_blank">Estafas en San Juan<small>Busca en principales medios locales.</small></a>
+        <a class="link danger" href="https://www.google.com/search?q=San+Juan+ciberestafa+OR+phishing+OR+delitos+inform%C3%A1ticos" target="_blank">Ciberestafas / phishing<small>Consulta general rápida en Google.</small></a>
+        <a class="link warn" href="https://www.google.com/search?q=San+Juan+allanamiento+OR+allanamientos" target="_blank">Allanamientos<small>Hechos recientes y operativos.</small></a>
+        <a class="link ok" href="https://www.google.com/search?q=San+Juan+accidente+OR+siniestro+vial" target="_blank">Accidentes / siniestros viales<small>Monitoreo de tránsito y hechos relevantes.</small></a>
+        <a class="link" href="https://www.google.com/search?q=San+Juan+persona+buscada+OR+buscan+a+OR+paradero" target="_blank">Personas buscadas / paradero<small>Búsqueda pública.</small></a>
+        <a class="link" href="https://www.google.com/search?q=San+Juan+homicidio+OR+robo+OR+detenido" target="_blank">Policiales generales<small>Homicidios, robos, detenidos.</small></a>
+        <a class="link" href="https://www.google.com/search?q=Cuyo+estafa+OR+ciberestafa+OR+allanamiento" target="_blank">Cuyo - hechos regionales<small>San Juan, Mendoza, San Luis y La Rioja.</small></a>
+        <a class="link" href="https://www.google.com/search?q=Argentina+delitos+inform%C3%A1ticos+estafa+virtual" target="_blank">Argentina - delitos informáticos<small>Panorama nacional.</small></a>
       </div>
-
-      <div class="card wide">
-        <h2>🔍 Buscador OSINT personalizado</h2>
-        <div class="tools">
-          <input class="search" id="osintQuery" placeholder="Escribí nombre, número, alias, dominio, CUIT, IMEI o palabra clave...">
-          <button onclick="buscarGoogle()">Buscar en Google</button>
-        </div>
-        <div class="links-grid">
-          <a href="#" onclick="buscarSitio('diariodecuyo.com.ar')">Buscar en Diario de Cuyo</a>
-          <a href="#" onclick="buscarSitio('tiempodesanjuan.com')">Buscar en Tiempo de San Juan</a>
-          <a href="#" onclick="buscarSitio('0264noticias.com.ar')">Buscar en 0264 Noticias</a>
-          <a href="#" onclick="buscarSitio('canal13sanjuan.com')">Buscar en Canal 13</a>
-          <a href="#" onclick="buscarExacto()">Buscar frase exacta</a>
-          <a href="#" onclick="buscarRedes()">Buscar posible perfil/redes</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>📰 Noticias San Juan</h2>
-        <a href="https://www.diariodecuyo.com.ar" target="_blank">Diario de Cuyo <span class="tag">SJ</span></a>
-        <a href="https://www.tiempodesanjuan.com" target="_blank">Tiempo de San Juan</a>
-        <a href="https://www.0264noticias.com.ar" target="_blank">0264 Noticias</a>
-        <a href="https://www.diariohuarpe.com" target="_blank">Diario Huarpe</a>
-        <a href="https://www.canal13sanjuan.com" target="_blank">Canal 13 San Juan</a>
-        <a href="https://www.diariozonda.com.ar" target="_blank">Zonda Diario</a>
-        <a href="https://www.laprovinciasj.com" target="_blank">La Provincia SJ</a>
-        <a href="https://elbastondigital.com" target="_blank">El Bastón Digital</a>
-      </div>
-
-      <div class="card">
-        <h2>⚖️ Judicial / Gobierno</h2>
-        <a href="https://www.jussanjuan.gov.ar" target="_blank">Poder Judicial de San Juan</a>
-        <a href="https://mpf.jussanjuan.gob.ar" target="_blank">Ministerio Público Fiscal SJ</a>
-        <a href="https://boletinoficial.sanjuan.gob.ar" target="_blank">Boletín Oficial San Juan</a>
-        <a href="https://www.sanjuan.gob.ar" target="_blank">Gobierno de San Juan</a>
-        <a href="https://www.argentina.gob.ar/justicia" target="_blank">Ministerio de Justicia Argentina</a>
-      </div>
-
-      <div class="card">
-        <h2>🔎 OSINT</h2>
-        <a href="https://www.google.com/advanced_search" target="_blank">Google Búsqueda Avanzada</a>
-        <a href="https://web.archive.org" target="_blank">Wayback Machine</a>
-        <a href="https://www.virustotal.com" target="_blank">VirusTotal</a>
-        <a href="https://haveibeenpwned.com" target="_blank">Have I Been Pwned</a>
-        <a href="https://www.shodan.io" target="_blank">Shodan</a>
-        <a href="https://urlscan.io" target="_blank">URLScan</a>
-      </div>
-
-      <div class="card">
-        <h2>📱 Telefonía / Dispositivos</h2>
-        <a href="https://www.imei.info" target="_blank">IMEI Info</a>
-        <a href="https://www.imeipro.info" target="_blank">IMEI Pro</a>
-        <a href="https://www.sammobile.com/firmwares/" target="_blank">Samsung Firmware</a>
-        <a href="https://samfw.com/firmware" target="_blank">SamFW Firmware</a>
-        <a href="https://www.gsmarena.com" target="_blank">GSMArena</a>
-      </div>
-
-      <div class="card">
-        <h2>💾 Forense / Hash</h2>
-        <a href="https://emn178.github.io/online-tools/md5_checksum.html" target="_blank">MD5 Online</a>
-        <a href="https://emn178.github.io/online-tools/sha256_checksum.html" target="_blank">SHA-256 Online</a>
-        <a href="https://www.sqlite.org/index.html" target="_blank">SQLite</a>
-        <a href="https://www.autopsy.com" target="_blank">Autopsy</a>
-        <a href="https://www.sleuthkit.org" target="_blank">The Sleuth Kit</a>
-      </div>
-
-      <div class="card">
-        <h2>🗺️ Mapas / Ubicación</h2>
-        <a href="https://www.google.com/maps" target="_blank">Google Maps</a>
-        <a href="https://earth.google.com/web/" target="_blank">Google Earth Web</a>
-        <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>
-        <a href="https://www.gpsvisualizer.com" target="_blank">GPS Visualizer</a>
-      </div>
-
-      <div class="card">
-        <h2>📄 Plantillas</h2>
-        <a href="#" onclick="alert('Espacio reservado para informe pericial')">Informe pericial</a>
-        <a href="#" onclick="alert('Espacio reservado para oficio judicial')">Oficio judicial</a>
-        <a href="#" onclick="alert('Espacio reservado para acta de apertura')">Acta de apertura</a>
-        <a href="#" onclick="alert('Espacio reservado para cadena de custodia')">Cadena de custodia</a>
-      </div>
-
     </section>
+
+    <section id="buscador">
+      <h3>🔍 Buscador OSINT personalizado</h3>
+      <div class="osintbox">
+        <input id="q" placeholder="Nombre, alias, teléfono, dominio, CUIT, IMEI o palabra clave..." />
+        <button onclick="buscarGoogle()">Buscar</button>
+      </div>
+      <div class="grid">
+        <a class="link" href="#" onclick="siteSearch('diariodecuyo.com.ar')">Buscar en Diario de Cuyo</a>
+        <a class="link" href="#" onclick="siteSearch('tiempodesanjuan.com')">Buscar en Tiempo de San Juan</a>
+        <a class="link" href="#" onclick="siteSearch('0264noticias.com.ar')">Buscar en 0264 Noticias</a>
+        <a class="link" href="#" onclick="siteSearch('canal13sanjuan.com')">Buscar en Canal 13 SJ</a>
+        <a class="link" href="#" onclick="exactSearch()">Buscar frase exacta</a>
+        <a class="link" href="#" onclick="socialSearch()">Buscar en redes sociales</a>
+      </div>
+    </section>
+
+    <section id="cuyo">
+      <h3>📰 Región Cuyo</h3>
+      <div class="grid">
+        <a class="link" href="https://www.diariodecuyo.com.ar" target="_blank">Diario de Cuyo <span class="pill">SJ</span><small>San Juan.</small></a>
+        <a class="link" href="https://www.tiempodesanjuan.com" target="_blank">Tiempo de San Juan<small>San Juan.</small></a>
+        <a class="link" href="https://www.0264noticias.com.ar" target="_blank">0264 Noticias<small>San Juan.</small></a>
+        <a class="link" href="https://www.diariohuarpe.com" target="_blank">Diario Huarpe<small>San Juan.</small></a>
+        <a class="link" href="https://www.canal13sanjuan.com" target="_blank">Canal 13 San Juan<small>San Juan.</small></a>
+        <a class="link" href="https://www.diariozonda.com.ar" target="_blank">Zonda Diario<small>San Juan.</small></a>
+        <a class="link" href="https://www.losandes.com.ar" target="_blank">Los Andes<small>Mendoza.</small></a>
+        <a class="link" href="https://www.mdzol.com" target="_blank">MDZ Online<small>Mendoza.</small></a>
+        <a class="link" href="https://www.elsol.com.ar" target="_blank">El Sol<small>Mendoza.</small></a>
+        <a class="link" href="https://www.diariouno.com.ar" target="_blank">Diario UNO<small>Mendoza.</small></a>
+        <a class="link" href="https://www.sitioandino.com.ar" target="_blank">Sitio Andino<small>Mendoza.</small></a>
+        <a class="link" href="https://elchorrillero.com" target="_blank">El Chorrillero<small>San Luis.</small></a>
+        <a class="link" href="https://lagacetadigital.com.ar" target="_blank">La Gaceta Digital<small>San Luis.</small></a>
+        <a class="link" href="https://agenciasanluis.com" target="_blank">Agencia San Luis<small>San Luis.</small></a>
+        <a class="link" href="https://www.nuevarioja.com.ar" target="_blank">Nueva Rioja<small>La Rioja.</small></a>
+        <a class="link" href="https://www.elindependiente.com.ar" target="_blank">El Independiente<small>La Rioja.</small></a>
+      </div>
+    </section>
+
+    <section id="nacion">
+      <h3>🇦🇷 Medios Nacionales</h3>
+      <div class="grid">
+        <a class="link" href="https://www.infobae.com" target="_blank">Infobae</a>
+        <a class="link" href="https://www.lanacion.com.ar" target="_blank">La Nación</a>
+        <a class="link" href="https://www.clarin.com" target="_blank">Clarín</a>
+        <a class="link" href="https://www.perfil.com" target="_blank">Perfil</a>
+        <a class="link" href="https://www.ambito.com" target="_blank">Ámbito</a>
+        <a class="link" href="https://www.pagina12.com.ar" target="_blank">Página/12</a>
+        <a class="link" href="https://tn.com.ar" target="_blank">TN</a>
+        <a class="link" href="https://www.c5n.com" target="_blank">C5N</a>
+      </div>
+    </section>
+
+    <section id="internacional">
+      <h3>🌎 Medios Internacionales</h3>
+      <div class="grid">
+        <a class="link" href="https://www.reuters.com" target="_blank">Reuters</a>
+        <a class="link" href="https://apnews.com" target="_blank">Associated Press</a>
+        <a class="link" href="https://www.bbc.com/news" target="_blank">BBC News</a>
+        <a class="link" href="https://www.dw.com/es" target="_blank">DW Español</a>
+        <a class="link" href="https://www.france24.com/es" target="_blank">France 24 Español</a>
+        <a class="link" href="https://cnnespanol.cnn.com" target="_blank">CNN en Español</a>
+        <a class="link" href="https://elpais.com" target="_blank">El País</a>
+        <a class="link" href="https://www.nytimes.com/es/" target="_blank">New York Times Español</a>
+      </div>
+    </section>
+
+    <section id="judicial">
+      <h3>⚖️ Judicial / Oficial</h3>
+      <div class="grid">
+        <a class="link" href="https://www.jussanjuan.gov.ar" target="_blank">Poder Judicial de San Juan<small>Portal institucional principal.</small></a>
+        <a class="link" href="https://boletinoficial.sanjuan.gob.ar" target="_blank">Boletín Oficial San Juan</a>
+        <a class="link" href="https://www.sanjuan.gob.ar" target="_blank">Gobierno de San Juan</a>
+        <a class="link" href="https://www.mpf.gob.ar" target="_blank">MPF Nación</a>
+        <a class="link" href="https://www.fiscales.gob.ar" target="_blank">Fiscales.gob.ar</a>
+        <a class="link" href="https://www.cij.gov.ar" target="_blank">Centro de Información Judicial</a>
+        <a class="link" href="https://www.argentina.gob.ar/justicia" target="_blank">Justicia Argentina</a>
+        <a class="link" href="https://www.boletinoficial.gob.ar" target="_blank">Boletín Oficial Nación</a>
+      </div>
+    </section>
+
+    <section id="osint">
+      <h3>🔎 OSINT</h3>
+      <div class="grid">
+        <a class="link" href="https://www.google.com/advanced_search" target="_blank">Google Búsqueda Avanzada</a>
+        <a class="link" href="https://web.archive.org" target="_blank">Wayback Machine</a>
+        <a class="link" href="https://www.virustotal.com" target="_blank">VirusTotal</a>
+        <a class="link" href="https://urlscan.io" target="_blank">URLScan</a>
+        <a class="link" href="https://haveibeenpwned.com" target="_blank">Have I Been Pwned</a>
+        <a class="link" href="https://intelx.io" target="_blank">Intelligence X</a>
+        <a class="link" href="https://hunter.io" target="_blank">Hunter.io</a>
+        <a class="link" href="https://www.social-searcher.com" target="_blank">Social Searcher</a>
+        <a class="link" href="https://www.google.com/imghp" target="_blank">Google Imágenes</a>
+        <a class="link" href="https://yandex.com/images/" target="_blank">Yandex Images</a>
+      </div>
+    </section>
+
+    <section id="ciber">
+      <h3>🛡️ Ciberseguridad</h3>
+      <div class="grid">
+        <a class="link" href="https://www.bleepingcomputer.com" target="_blank">Bleeping Computer</a>
+        <a class="link" href="https://thehackernews.com" target="_blank">The Hacker News</a>
+        <a class="link" href="https://krebsonsecurity.com" target="_blank">Krebs on Security</a>
+        <a class="link" href="https://www.malwarebytes.com/blog" target="_blank">Malwarebytes Labs</a>
+        <a class="link" href="https://abuseipdb.com" target="_blank">AbuseIPDB</a>
+        <a class="link" href="https://www.shodan.io" target="_blank">Shodan</a>
+        <a class="link" href="https://search.censys.io" target="_blank">Censys Search</a>
+        <a class="link" href="https://otx.alienvault.com" target="_blank">AlienVault OTX</a>
+      </div>
+    </section>
+
+    <section id="telefonia">
+      <h3>📱 Telefonía / Android</h3>
+      <div class="grid">
+        <a class="link" href="https://www.imei.info" target="_blank">IMEI Info</a>
+        <a class="link" href="https://www.imeipro.info" target="_blank">IMEI Pro</a>
+        <a class="link" href="https://www.gsmarena.com" target="_blank">GSMArena</a>
+        <a class="link" href="https://samfw.com/firmware" target="_blank">SamFW Firmware</a>
+        <a class="link" href="https://www.sammobile.com/firmwares/" target="_blank">SamMobile Firmware</a>
+        <a class="link" href="https://developer.android.com" target="_blank">Android Developers</a>
+        <a class="link" href="https://www.apkmirror.com" target="_blank">APKMirror</a>
+        <a class="link" href="https://play.google.com/store/apps" target="_blank">Google Play</a>
+      </div>
+    </section>
+
+    <section id="forense">
+      <h3>💾 Forense Digital / Utilidades</h3>
+      <div class="grid">
+        <a class="link" href="https://www.autopsy.com" target="_blank">Autopsy</a>
+        <a class="link" href="https://www.sleuthkit.org" target="_blank">The Sleuth Kit</a>
+        <a class="link" href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef</a>
+        <a class="link" href="https://hexed.it" target="_blank">HexEd.it</a>
+        <a class="link" href="https://sqlitebrowser.org" target="_blank">DB Browser for SQLite</a>
+        <a class="link" href="https://www.sqlite.org/index.html" target="_blank">SQLite</a>
+        <a class="link" href="https://exif.tools" target="_blank">Exif.tools</a>
+        <a class="link" href="https://emn178.github.io/online-tools/md5_checksum.html" target="_blank">MD5 Online</a>
+        <a class="link" href="https://emn178.github.io/online-tools/sha256_checksum.html" target="_blank">SHA-256 Online</a>
+        <a class="link" href="https://www.nirsoft.net" target="_blank">NirSoft</a>
+      </div>
+    </section>
+
+    <section id="geo">
+      <h3>🗺️ Geolocalización / Mapas</h3>
+      <div class="grid">
+        <a class="link" href="https://www.google.com/maps" target="_blank">Google Maps</a>
+        <a class="link" href="https://earth.google.com/web/" target="_blank">Google Earth Web</a>
+        <a class="link" href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>
+        <a class="link" href="https://www.gpsvisualizer.com" target="_blank">GPS Visualizer</a>
+        <a class="link" href="https://www.geonames.org" target="_blank">GeoNames</a>
+        <a class="link" href="https://www.mapillary.com" target="_blank">Mapillary</a>
+      </div>
+    </section>
+
+    <footer>
+      Centro de Operaciones Digitales SJ · Repositorio público de fuentes abiertas · Versión 2.0
+    </footer>
   </main>
+</div>
 
-  <footer>
-    Centro de Operaciones SJ · Repositorio personal de consulta rápida
-  </footer>
-
-  <script>
-    function filterLinks(){
-      const q = document.getElementById("search").value.toLowerCase();
-      const links = document.querySelectorAll("a");
-      links.forEach(a => {
-        a.style.display = a.innerText.toLowerCase().includes(q) ? "block" : "none";
-      });
-    }
-    function clearSearch(){
-      document.getElementById("search").value = "";
-      filterLinks();
-    }
-    function q(){
-      return document.getElementById("osintQuery").value.trim();
-    }
-    function openGoogle(query){
-      if(!query){ alert("Ingresá primero un dato a buscar."); return; }
-      window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
-    }
-    function buscarGoogle(){ openGoogle(q()); }
-    function buscarSitio(site){ openGoogle("site:" + site + " " + q()); }
-    function buscarExacto(){ openGoogle('"' + q() + '"'); }
-    function buscarRedes(){
-      openGoogle('"' + q() + '" (site:facebook.com OR site:instagram.com OR site:tiktok.com OR site:x.com OR site:linkedin.com)');
-    }
-  </script>
+<script>
+  function allLinks(){ return Array.from(document.querySelectorAll(".link")); }
+  function updateCount(){ document.getElementById("countLinks").innerText = allLinks().length; }
+  function filterAll(){
+    const q = document.getElementById("filter").value.toLowerCase().trim();
+    allLinks().forEach(a => {
+      const txt = a.innerText.toLowerCase();
+      a.classList.toggle("hidden", q && !txt.includes(q));
+    });
+  }
+  function clearFilter(){
+    document.getElementById("filter").value="";
+    filterAll();
+  }
+  function query(){
+    const v = document.getElementById("q").value.trim();
+    if(!v){ alert("Ingresá primero un dato a buscar."); return null; }
+    return v;
+  }
+  function openSearch(s){ window.open("https://www.google.com/search?q="+encodeURIComponent(s),"_blank"); }
+  function buscarGoogle(){ const v=query(); if(v) openSearch(v); }
+  function siteSearch(site){ const v=query(); if(v) openSearch("site:"+site+" "+v); }
+  function exactSearch(){ const v=query(); if(v) openSearch('"'+v+'"'); }
+  function socialSearch(){ const v=query(); if(v) openSearch('"'+v+'" (site:facebook.com OR site:instagram.com OR site:tiktok.com OR site:x.com OR site:linkedin.com)'); }
+  updateCount();
+</script>
 </body>
 </html>
