@@ -8,478 +8,111 @@
 
 <style>
 :root{
-  --bg:#070b12;
-  --panel:#101722;
-  --panel-soft:#141d2a;
-  --line:#2b384b;
-  --text:#edf3ff;
-  --muted:#9eacbd;
-  --orange:#ff9f1c;
-  --orange2:#ff6b00;
-  --green:#25d366;
-  --blue:#38bdf8;
-  --red:#ff4d4d;
-  --shadow:0 24px 60px rgba(0,0,0,.38);
+  --bg:#070b12; --panel:#101722; --line:#2b384b; --text:#edf3ff;
+  --muted:#9eacbd; --orange:#ff9f1c; --orange2:#ff6b00;
+  --green:#25d366; --blue:#38bdf8; --shadow:0 24px 60px rgba(0,0,0,.38);
 }
-
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
-
 body{
-  margin:0;
-  min-height:100vh;
-  font-family:Arial, Helvetica, sans-serif;
+  margin:0; min-height:100vh; font-family:Arial, Helvetica, sans-serif;
   background:
     radial-gradient(circle at top left,rgba(255,159,28,.16),transparent 28%),
     radial-gradient(circle at top right,rgba(56,189,248,.12),transparent 30%),
     linear-gradient(180deg,#080d15 0,#05070c 100%);
   color:var(--text);
 }
-
 a{text-decoration:none;color:inherit}
-
-.shell{
-  max-width:1280px;
-  margin:auto;
-  padding:26px;
-}
-
-.top{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:18px;
-  align-items:center;
-  margin-bottom:28px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.eye{
-  width:44px;
-  height:28px;
-  border:3px solid var(--orange);
-  border-radius:50%;
-  position:relative;
-  box-shadow:0 0 22px rgba(255,159,28,.28);
-}
-
-.eye:after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:11px;
-  height:11px;
-  transform:translate(-50%,-50%);
-  background:var(--orange);
-  border-radius:50%;
-}
-
-.brand h1{
-  margin:0;
-  font-size:28px;
-  letter-spacing:.7px;
-}
-
+.shell{max-width:1280px;margin:auto;padding:26px}
+.top{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:14px}
+.eye{width:44px;height:28px;border:3px solid var(--orange);border-radius:50%;position:relative;box-shadow:0 0 22px rgba(255,159,28,.28)}
+.eye:after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;transform:translate(-50%,-50%);background:var(--orange);border-radius:50%}
+.brand h1{margin:0;font-size:28px;letter-spacing:.7px}
 .brand h1 span{color:var(--orange)}
-
-.brand p{
-  margin:3px 0 0;
-  color:var(--muted);
-  font-size:13px;
-}
-
-.status-pill{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  color:var(--muted);
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.035);
-  padding:10px 14px;
-  border-radius:999px;
-  font-weight:bold;
-  font-size:13px;
-}
-
-.status-dot{
-  width:10px;
-  height:10px;
-  background:var(--green);
-  border-radius:50%;
-  box-shadow:0 0 16px rgba(37,211,102,.8);
-}
-
+.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.status-pill{display:flex;gap:8px;align-items:center;color:var(--muted);border:1px solid var(--line);background:rgba(255,255,255,.035);padding:10px 14px;border-radius:999px;font-weight:bold;font-size:13px}
+.status-dot{width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 16px rgba(37,211,102,.8)}
 .hero{
-  min-height:520px;
-  display:grid;
-  place-items:center;
-  text-align:center;
+  min-height:520px; display:grid; place-items:center; text-align:center;
   border:1px solid var(--line);
   background:
     linear-gradient(180deg,rgba(16,23,34,.94),rgba(8,12,19,.94)),
     radial-gradient(circle at top,rgba(255,159,28,.10),transparent 38%);
-  border-radius:30px;
-  box-shadow:var(--shadow);
-  padding:38px 22px;
-  position:relative;
-  overflow:hidden;
+  border-radius:30px; box-shadow:var(--shadow); padding:38px 22px; position:relative; overflow:hidden;
 }
-
 .hero:before{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:""; position:absolute; inset:0;
   background:
     linear-gradient(90deg,transparent 0 49%,rgba(255,255,255,.025) 50%,transparent 51%),
     linear-gradient(0deg,transparent 0 49%,rgba(255,255,255,.018) 50%,transparent 51%);
-  background-size:42px 42px;
-  opacity:.5;
-  pointer-events:none;
+  background-size:42px 42px; opacity:.5; pointer-events:none;
 }
-
-.hero-inner{
-  position:relative;
-  z-index:2;
-  width:min(900px,100%);
-}
-
-.time{
-  font-size:78px;
-  font-weight:900;
-  letter-spacing:1.2px;
-  line-height:1;
-  margin-bottom:10px;
-}
-
-.meta{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  color:var(--muted);
-  font-size:15px;
-  margin-bottom:26px;
-}
-
-.meta span{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.04);
-  padding:8px 12px;
-  border-radius:999px;
-}
-
-.greeting{
-  font-size:28px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-
-.subgreeting{
-  color:var(--muted);
-  margin-bottom:22px;
-}
-
-.search-card{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  background:#070b12;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:10px;
-  box-shadow:0 16px 45px rgba(0,0,0,.40);
-}
-
-.search-card input{
-  width:100%;
-  border:0;
-  outline:none;
-  background:transparent;
-  color:var(--text);
-  font-size:20px;
-  padding:17px 18px;
-}
-
-.search-card button{
-  border:0;
-  border-radius:16px;
-  padding:0 28px;
-  font-weight:900;
-  background:linear-gradient(90deg,var(--orange),var(--orange2));
-  color:#081018;
-  cursor:pointer;
-  letter-spacing:.3px;
-}
-
+.hero-inner{position:relative;z-index:2;width:min(900px,100%)}
+.time{font-size:78px;font-weight:900;letter-spacing:1.2px;line-height:1;margin-bottom:10px}
+.meta{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:15px;margin-bottom:26px}
+.meta span{border:1px solid var(--line);background:rgba(255,255,255,.04);padding:8px 12px;border-radius:999px}
+.greeting{font-size:28px;font-weight:900;margin-bottom:8px}
+.subgreeting{color:var(--muted);margin-bottom:22px}
+.search-card{display:grid;grid-template-columns:1fr auto;gap:10px;background:#070b12;border:1px solid var(--line);border-radius:22px;padding:10px;box-shadow:0 16px 45px rgba(0,0,0,.40)}
+.search-card input{width:100%;border:0;outline:none;background:transparent;color:var(--text);font-size:20px;padding:17px 18px}
+.search-card button{border:0;border-radius:16px;padding:0 28px;font-weight:900;background:linear-gradient(90deg,var(--orange),var(--orange2));color:#081018;cursor:pointer;letter-spacing:.3px}
 .search-card button:hover{filter:brightness(1.08)}
+.hints{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hints span{color:var(--muted);border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);padding:7px 10px;border-radius:999px;font-size:12px}
 
-.hints{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:14px;
-}
-
-.hints span{
-  color:var(--muted);
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.035);
-  padding:7px 10px;
-  border-radius:999px;
-  font-size:12px;
-}
-
-.result-panel{
-  display:none;
-  text-align:left;
-  margin-top:24px;
-  border:1px solid var(--line);
-  background:rgba(5,8,13,.92);
-  border-radius:22px;
-  padding:16px;
-}
-
+.result-panel{display:none;text-align:left;margin-top:24px;border:1px solid var(--line);background:rgba(5,8,13,.92);border-radius:22px;padding:16px}
 .result-panel.active{display:block}
-
-.detect{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:center;
-  padding-bottom:12px;
-  border-bottom:1px solid var(--line);
-  color:var(--muted);
-  font-size:14px;
-}
-
+.detect{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line);color:var(--muted);font-size:14px}
 .detect strong{color:var(--orange)}
-
-.result-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:10px;
-  margin-top:14px;
-}
-
-.result-grid a{
-  display:block;
-  padding:13px;
-  border-radius:14px;
-  background:rgba(255,255,255,.04);
-  border:1px solid transparent;
-  font-weight:800;
-}
-
-.result-grid a:hover{
-  border-color:var(--orange);
-  background:rgba(255,159,28,.10);
-}
-
-.section-title{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:12px;
-  margin:36px 0 14px;
-}
-
-.section-title h2{
-  margin:0;
-  font-size:22px;
-}
-
-.section-title p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
-}
-
-.newspapers{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:16px;
-}
-
-.paper{
-  background:linear-gradient(180deg,var(--panel),#0b111a);
-  border:1px solid var(--line);
-  border-radius:22px;
-  overflow:hidden;
-  box-shadow:0 14px 36px rgba(0,0,0,.28);
-}
-
-.cover{
-  height:142px;
-  display:grid;
-  place-items:center;
-  position:relative;
-  background:
-    linear-gradient(135deg,rgba(255,159,28,.35),rgba(56,189,248,.11)),
-    repeating-linear-gradient(0deg,rgba(255,255,255,.09) 0 2px,transparent 2px 13px);
-  font-size:27px;
-  font-weight:900;
-  text-align:center;
-  padding:18px;
-}
-
-.cover:after{
-  content:"PORTADA";
-  position:absolute;
-  right:12px;
-  bottom:10px;
-  color:rgba(255,255,255,.55);
-  font-size:11px;
-  letter-spacing:1px;
-}
-
-.paper-body{
-  padding:15px;
-}
-
-.paper-body h3{
-  margin:0 0 8px;
-  font-size:18px;
-}
-
-.paper-body p{
-  margin:0 0 14px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.4;
-}
-
-.paper-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-}
-
-.btn{
-  text-align:center;
-  padding:11px;
-  border-radius:12px;
-  background:var(--orange);
-  color:#081018;
-  font-weight:900;
-  font-size:12px;
-}
-
-.btn.secondary{
-  background:#1b2738;
-  color:var(--text);
-  border:1px solid var(--line);
-}
-
+.result-section{margin-top:16px}
+.result-section h3{font-size:15px;margin:0 0 8px;color:var(--orange);letter-spacing:.2px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.result-grid a{display:block;padding:13px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid transparent;font-weight:800}
+.result-grid a:hover{border-color:var(--orange);background:rgba(255,159,28,.10)}
+.quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.quick-actions a{display:inline-block;padding:9px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.035);font-size:12px;font-weight:800;color:var(--muted)}
+.quick-actions a:hover{color:var(--orange);border-color:var(--orange)}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:36px 0 14px}
+.section-title h2{margin:0;font-size:22px}
+.section-title p{margin:0;color:var(--muted);font-size:13px}
+.newspapers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.paper{background:linear-gradient(180deg,var(--panel),#0b111a);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 14px 36px rgba(0,0,0,.28)}
+.cover{height:142px;display:grid;place-items:center;position:relative;background:linear-gradient(135deg,rgba(255,159,28,.35),rgba(56,189,248,.11)),repeating-linear-gradient(0deg,rgba(255,255,255,.09) 0 2px,transparent 2px 13px);font-size:27px;font-weight:900;text-align:center;padding:18px}
+.cover:after{content:"PORTADA";position:absolute;right:12px;bottom:10px;color:rgba(255,255,255,.55);font-size:11px;letter-spacing:1px}
+.paper-body{padding:15px}
+.paper-body h3{margin:0 0 8px;font-size:18px}
+.paper-body p{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.4}
+.paper-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{text-align:center;padding:11px;border-radius:12px;background:var(--orange);color:#081018;font-weight:900;font-size:12px}
+.btn.secondary{background:#1b2738;color:var(--text);border:1px solid var(--line)}
 .btn:hover{filter:brightness(1.08)}
-
-.public-records{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;
-}
-
-.record{
-  border:1px solid var(--line);
-  background:linear-gradient(180deg,var(--panel),#0c121c);
-  border-radius:20px;
-  padding:16px;
-}
-
-.record h3{
-  margin:0 0 8px;
-  font-size:17px;
-}
-
-.record p{
-  margin:0 0 14px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.4;
-}
-
-.record a{
-  display:block;
-  background:rgba(255,255,255,.04);
-  border:1px solid transparent;
-  padding:11px;
-  border-radius:12px;
-  margin-top:8px;
-  font-weight:800;
-}
-
-.record a:hover{
-  border-color:var(--orange);
-  background:rgba(255,159,28,.10);
-}
-
-.sources{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:14px;
-}
-
-.source-box{
-  border:1px solid var(--line);
-  background:rgba(16,23,34,.74);
-  border-radius:20px;
-  padding:15px;
-}
-
-.source-box h3{
-  margin:0 0 10px;
-}
-
-.source-box a{
-  display:block;
-  padding:9px 0;
-  color:var(--muted);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.source-box a:hover{color:var(--orange)}
-
-.footer{
-  text-align:center;
-  color:var(--muted);
-  font-size:13px;
-  padding:34px 0 10px;
-}
-
+.public-records,.sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.record,.source-box{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),#0c121c);border-radius:20px;padding:16px}
+.record h3,.source-box h3{margin:0 0 8px;font-size:17px}
+.record p{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.4}
+.record a,.source-box a{display:block;background:rgba(255,255,255,.04);border:1px solid transparent;padding:11px;border-radius:12px;margin-top:8px;font-weight:800;color:var(--text)}
+.source-box a{color:var(--muted);background:transparent;border-radius:0;border-bottom:1px solid rgba(255,255,255,.06);padding:9px 0;margin-top:0}
+.record a:hover,.source-box a:hover{border-color:var(--orange);color:var(--orange);background:rgba(255,159,28,.10)}
+.footer{text-align:center;color:var(--muted);font-size:13px;padding:34px 0 10px}
 @media(max-width:760px){
-  .shell{padding:14px}
-  .top{grid-template-columns:1fr}
-  .time{font-size:54px}
-  .hero{min-height:480px;padding:28px 14px}
-  .greeting{font-size:23px}
-  .search-card{grid-template-columns:1fr}
-  .search-card button{padding:16px}
-  .paper-actions{grid-template-columns:1fr}
+  .shell{padding:14px}.top{grid-template-columns:1fr}.time{font-size:54px}.hero{min-height:480px;padding:28px 14px}.greeting{font-size:23px}
+  .search-card{grid-template-columns:1fr}.search-card button{padding:16px}.paper-actions{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 <div class="shell">
-
   <div class="top">
     <div class="brand">
       <div class="eye"></div>
       <div>
         <h1>COD-<span>SJ</span></h1>
-        <p>Centro de Inteligencia de Fuentes Abiertas · Versión 4.0</p>
+        <p>Centro de Inteligencia de Fuentes Abiertas · Versión 4.2</p>
       </div>
     </div>
-    <div class="status-pill">
-      <span class="status-dot"></span>
-      Sistema operativo · Fuentes públicas
-    </div>
+    <div class="status-pill"><span class="status-dot"></span>Sistema operativo · Fuentes públicas</div>
   </div>
 
   <section class="hero">
@@ -491,7 +124,7 @@ a{text-decoration:none;color:inherit}
       </div>
 
       <div class="greeting" id="greeting">¿Cómo puedo ayudarte hoy?</div>
-      <div class="subgreeting">Consulta inteligente sobre noticias, fuentes públicas, registros y organismos oficiales.</div>
+      <div class="subgreeting">Escribí una sola vez. COD-SJ genera todas las búsquedas útiles sin preguntarte dónde buscar.</div>
 
       <div class="search-card">
         <input id="query" placeholder="Haga su consulta aquí..." onkeydown="if(event.key==='Enter') investigate()">
@@ -499,13 +132,7 @@ a{text-decoration:none;color:inherit}
       </div>
 
       <div class="hints">
-        <span>Nombre o alias</span>
-        <span>Teléfono</span>
-        <span>Dominio vehicular</span>
-        <span>Email</span>
-        <span>IMEI</span>
-        <span>Empresa</span>
-        <span>Barrio / lugar</span>
+        <span>Nombre o alias</span><span>Teléfono</span><span>Dominio vehicular</span><span>Email</span><span>IMEI</span><span>Empresa</span><span>Barrio / lugar</span>
       </div>
 
       <div class="result-panel" id="results">
@@ -513,330 +140,205 @@ a{text-decoration:none;color:inherit}
           <div>Consulta: <strong id="queryLabel"></strong></div>
           <div>Tipo detectado: <strong id="typeLabel"></strong></div>
         </div>
-        <div class="result-grid" id="resultLinks"></div>
+        <div class="quick-actions" id="quickActions"></div>
+        <div id="resultSections"></div>
       </div>
     </div>
   </section>
 
-  <div class="section-title">
-    <div>
-      <h2>📰 Principales diarios de San Juan</h2>
-      <p>Portadas visuales con acceso directo y búsqueda específica en cada medio.</p>
-    </div>
-  </div>
+  <div class="section-title"><div><h2>📰 Principales diarios de San Juan</h2><p>Acceso directo y búsqueda específica solo cuando vos quieras elegir un medio puntual.</p></div></div>
 
   <section class="newspapers">
-    <article class="paper">
-      <div class="cover">DIARIO<br>DE CUYO</div>
-      <div class="paper-body">
-        <h3>Diario de Cuyo</h3>
-        <p>Medio principal de consulta provincial. Política, policiales, judiciales y actualidad.</p>
-        <div class="paper-actions">
-          <a class="btn" href="https://www.diariodecuyo.com.ar" target="_blank">Abrir diario</a>
-          <a class="btn secondary" href="#" onclick="searchInSite('diariodecuyo.com.ar','Diario de Cuyo')">Buscar en Diario de Cuyo</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="cover">TIEMPO<br>SJ</div>
-      <div class="paper-body">
-        <h3>Tiempo de San Juan</h3>
-        <p>Actualidad provincial, policiales, política y temas de interés público.</p>
-        <div class="paper-actions">
-          <a class="btn" href="https://www.tiempodesanjuan.com" target="_blank">Abrir diario</a>
-          <a class="btn secondary" href="#" onclick="searchInSite('tiempodesanjuan.com','Tiempo de San Juan')">Buscar en Tiempo de SJ</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="cover">0264<br>NOTICIAS</div>
-      <div class="paper-body">
-        <h3>0264 Noticias</h3>
-        <p>Noticias rápidas, sucesos, operativos, accidentes y actualidad departamental.</p>
-        <div class="paper-actions">
-          <a class="btn" href="https://www.0264noticias.com.ar" target="_blank">Abrir diario</a>
-          <a class="btn secondary" href="#" onclick="searchInSite('0264noticias.com.ar','0264 Noticias')">Buscar en 0264</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="cover">HUARPE</div>
-      <div class="paper-body">
-        <h3>Diario Huarpe</h3>
-        <p>Actualidad general, sociedad, política, policiales y noticias provinciales.</p>
-        <div class="paper-actions">
-          <a class="btn" href="https://www.diariohuarpe.com" target="_blank">Abrir diario</a>
-          <a class="btn secondary" href="#" onclick="searchInSite('diariohuarpe.com','Diario Huarpe')">Buscar en Huarpe</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="cover">CANAL 13<br>SJ</div>
-      <div class="paper-body">
-        <h3>Canal 13 San Juan</h3>
-        <p>Noticias locales, videos, actualidad provincial y cobertura de hechos recientes.</p>
-        <div class="paper-actions">
-          <a class="btn" href="https://www.canal13sanjuan.com" target="_blank">Abrir sitio</a>
-          <a class="btn secondary" href="#" onclick="searchInSite('canal13sanjuan.com','Canal 13 San Juan')">Buscar en Canal 13</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="paper">
-      <div class="cover">ZONDA<br>DIARIO</div>
-      <div class="paper-body">
-        <h3>Zonda Diario</h3>
-        <p>Medio provincial con noticias locales, política, sociedad y actualidad general.</p>
-        <div class="paper-actions">
-          <a class="btn" href="https://www.diariozonda.com.ar" target="_blank">Abrir diario</a>
-          <a class="btn secondary" href="#" onclick="searchInSite('diariozonda.com.ar','Zonda Diario')">Buscar en Zonda</a>
-        </div>
-      </div>
-    </article>
+    <article class="paper"><div class="cover">DIARIO<br>DE CUYO</div><div class="paper-body"><h3>Diario de Cuyo</h3><p>Medio principal de consulta provincial. Política, policiales, judiciales y actualidad.</p><div class="paper-actions"><a class="btn" href="https://www.diariodecuyo.com.ar" target="_blank">Abrir diario</a><a class="btn secondary" href="#" onclick="searchInSite('diariodecuyo.com.ar','Diario de Cuyo')">Buscar en Diario de Cuyo</a></div></div></article>
+    <article class="paper"><div class="cover">TIEMPO<br>SJ</div><div class="paper-body"><h3>Tiempo de San Juan</h3><p>Actualidad provincial, policiales, política y temas de interés público.</p><div class="paper-actions"><a class="btn" href="https://www.tiempodesanjuan.com" target="_blank">Abrir diario</a><a class="btn secondary" href="#" onclick="searchInSite('tiempodesanjuan.com','Tiempo de San Juan')">Buscar en Tiempo de SJ</a></div></div></article>
+    <article class="paper"><div class="cover">0264<br>NOTICIAS</div><div class="paper-body"><h3>0264 Noticias</h3><p>Noticias rápidas, sucesos, operativos, accidentes y actualidad departamental.</p><div class="paper-actions"><a class="btn" href="https://www.0264noticias.com.ar" target="_blank">Abrir diario</a><a class="btn secondary" href="#" onclick="searchInSite('0264noticias.com.ar','0264 Noticias')">Buscar en 0264</a></div></div></article>
+    <article class="paper"><div class="cover">HUARPE</div><div class="paper-body"><h3>Diario Huarpe</h3><p>Actualidad general, sociedad, política, policiales y noticias provinciales.</p><div class="paper-actions"><a class="btn" href="https://www.diariohuarpe.com" target="_blank">Abrir diario</a><a class="btn secondary" href="#" onclick="searchInSite('diariohuarpe.com','Diario Huarpe')">Buscar en Huarpe</a></div></div></article>
+    <article class="paper"><div class="cover">CANAL 13<br>SJ</div><div class="paper-body"><h3>Canal 13 San Juan</h3><p>Noticias locales, videos, actualidad provincial y cobertura de hechos recientes.</p><div class="paper-actions"><a class="btn" href="https://www.canal13sanjuan.com" target="_blank">Abrir sitio</a><a class="btn secondary" href="#" onclick="searchInSite('canal13sanjuan.com','Canal 13 San Juan')">Buscar en Canal 13</a></div></div></article>
+    <article class="paper"><div class="cover">ZONDA<br>DIARIO</div><div class="paper-body"><h3>Zonda Diario</h3><p>Medio provincial con noticias locales, política, sociedad y actualidad general.</p><div class="paper-actions"><a class="btn" href="https://www.diariozonda.com.ar" target="_blank">Abrir diario</a><a class="btn secondary" href="#" onclick="searchInSite('diariozonda.com.ar','Zonda Diario')">Buscar en Zonda</a></div></div></article>
   </section>
 
-  <div class="section-title">
-    <div>
-      <h2>🚗 Registros públicos y organismos útiles</h2>
-      <p>Accesos públicos. No reemplazan solicitudes formales ni vías institucionales.</p>
-    </div>
-  </div>
+  <div class="section-title"><div><h2>🚗 Registros públicos y organismos útiles</h2><p>Accesos públicos. No reemplazan solicitudes formales ni vías institucionales.</p></div></div>
 
   <section class="public-records">
-    <div class="record">
-      <h3>Dominio vehicular</h3>
-      <p>Consultas e informes vinculados a automotores y radicación registral.</p>
-      <a href="https://www.dnrpa.gov.ar" target="_blank">DNRPA</a>
-      <a href="https://www.dnrpa.gov.ar/portal_dnrpa/radicacion2.php" target="_blank">Radicación por patente</a>
-      <a href="https://www.argentina.gob.ar/servicio/solicitar-un-informe-de-dominio-del-automotor" target="_blank">Informe de dominio</a>
-      <a href="https://www.argentina.gob.ar/servicio/solicitar-informe-historico-de-dominio-del-automotor" target="_blank">Informe histórico</a>
-    </div>
-
-    <div class="record">
-      <h3>Padrones públicos</h3>
-      <p>Consultas electorales públicas y registros asociados al deber de votar.</p>
-      <a href="https://www.padron.gob.ar" target="_blank">Padrón Electoral Nacional</a>
-      <a href="https://infractores.padron.gob.ar" target="_blank">Registro de infractores</a>
-    </div>
-
-    <div class="record">
-      <h3>Judicial / oficial</h3>
-      <p>Organismos judiciales y boletines oficiales de consulta frecuente.</p>
-      <a href="https://www.jussanjuan.gov.ar" target="_blank">Poder Judicial San Juan</a>
-      <a href="https://boletinoficial.sanjuan.gob.ar" target="_blank">Boletín Oficial San Juan</a>
-      <a href="https://www.cij.gov.ar" target="_blank">CIJ</a>
-      <a href="https://www.boletinoficial.gob.ar" target="_blank">Boletín Oficial Nación</a>
-    </div>
-
-    <div class="record">
-      <h3>Telefonía / dispositivos</h3>
-      <p>Consultas técnicas públicas para dispositivos, IMEI y modelos.</p>
-      <a href="https://www.imei.info" target="_blank">IMEI Info</a>
-      <a href="https://www.gsmarena.com" target="_blank">GSMArena</a>
-      <a href="https://samfw.com/firmware" target="_blank">SamFW</a>
-    </div>
+    <div class="record"><h3>Dominio vehicular</h3><p>Consultas e informes vinculados a automotores y radicación registral.</p><a href="https://www.dnrpa.gov.ar" target="_blank">DNRPA</a><a href="https://www.dnrpa.gov.ar/portal_dnrpa/radicacion2.php" target="_blank">Radicación por patente</a><a href="https://www.argentina.gob.ar/servicio/solicitar-un-informe-de-dominio-del-automotor" target="_blank">Informe de dominio</a><a href="https://www.argentina.gob.ar/servicio/solicitar-informe-historico-de-dominio-del-automotor" target="_blank">Informe histórico</a></div>
+    <div class="record"><h3>Padrones públicos</h3><p>Consultas electorales públicas y registros asociados al deber de votar.</p><a href="https://www.padron.gob.ar" target="_blank">Padrón Electoral Nacional</a><a href="https://infractores.padron.gob.ar" target="_blank">Registro de infractores</a></div>
+    <div class="record"><h3>Judicial / oficial</h3><p>Organismos judiciales y boletines oficiales de consulta frecuente.</p><a href="https://www.jussanjuan.gov.ar" target="_blank">Poder Judicial San Juan</a><a href="https://boletinoficial.sanjuan.gob.ar" target="_blank">Boletín Oficial San Juan</a><a href="https://www.cij.gov.ar" target="_blank">CIJ</a><a href="https://www.boletinoficial.gob.ar" target="_blank">Boletín Oficial Nación</a></div>
+    <div class="record"><h3>Telefonía / dispositivos</h3><p>Consultas técnicas públicas para dispositivos, IMEI y modelos.</p><a href="https://www.imei.info" target="_blank">IMEI Info</a><a href="https://www.gsmarena.com" target="_blank">GSMArena</a><a href="https://samfw.com/firmware" target="_blank">SamFW</a></div>
   </section>
 
-  <div class="section-title">
-    <div>
-      <h2>🌐 Fuentes ampliadas</h2>
-      <p>Fuentes de respaldo para búsquedas regionales, nacionales e internacionales.</p>
-    </div>
-  </div>
+  <div class="section-title"><div><h2>🌐 Fuentes ampliadas</h2><p>Fuentes de respaldo para búsquedas regionales, nacionales e internacionales.</p></div></div>
 
   <section class="sources">
-    <div class="source-box">
-      <h3>Región Cuyo</h3>
-      <a href="https://www.losandes.com.ar" target="_blank">Los Andes</a>
-      <a href="https://www.mdzol.com" target="_blank">MDZ Online</a>
-      <a href="https://www.diariouno.com.ar" target="_blank">Diario UNO</a>
-      <a href="https://elchorrillero.com" target="_blank">El Chorrillero</a>
-      <a href="https://www.nuevarioja.com.ar" target="_blank">Nueva Rioja</a>
-    </div>
-
-    <div class="source-box">
-      <h3>Nacionales</h3>
-      <a href="https://www.infobae.com" target="_blank">Infobae</a>
-      <a href="https://www.lanacion.com.ar" target="_blank">La Nación</a>
-      <a href="https://www.clarin.com" target="_blank">Clarín</a>
-      <a href="https://tn.com.ar" target="_blank">TN</a>
-      <a href="https://www.perfil.com" target="_blank">Perfil</a>
-    </div>
-
-    <div class="source-box">
-      <h3>Internacionales / ciber</h3>
-      <a href="https://www.reuters.com" target="_blank">Reuters</a>
-      <a href="https://apnews.com" target="_blank">Associated Press</a>
-      <a href="https://www.bbc.com/news" target="_blank">BBC News</a>
-      <a href="https://www.bleepingcomputer.com" target="_blank">BleepingComputer</a>
-      <a href="https://thehackernews.com" target="_blank">The Hacker News</a>
-    </div>
+    <div class="source-box"><h3>Región Cuyo</h3><a href="https://www.losandes.com.ar" target="_blank">Los Andes</a><a href="https://www.mdzol.com" target="_blank">MDZ Online</a><a href="https://www.diariouno.com.ar" target="_blank">Diario UNO</a><a href="https://elchorrillero.com" target="_blank">El Chorrillero</a><a href="https://www.nuevarioja.com.ar" target="_blank">Nueva Rioja</a></div>
+    <div class="source-box"><h3>Nacionales</h3><a href="https://www.infobae.com" target="_blank">Infobae</a><a href="https://www.lanacion.com.ar" target="_blank">La Nación</a><a href="https://www.clarin.com" target="_blank">Clarín</a><a href="https://tn.com.ar" target="_blank">TN</a><a href="https://www.perfil.com" target="_blank">Perfil</a></div>
+    <div class="source-box"><h3>Internacionales / ciber</h3><a href="https://www.reuters.com" target="_blank">Reuters</a><a href="https://apnews.com" target="_blank">Associated Press</a><a href="https://www.bbc.com/news" target="_blank">BBC News</a><a href="https://www.bleepingcomputer.com" target="_blank">BleepingComputer</a><a href="https://thehackernews.com" target="_blank">The Hacker News</a></div>
   </section>
 
-  <div class="footer">
-    COD-SJ · Consulta inteligente · Fuentes abiertas · No incluir información sensible o datos de causas.
-  </div>
-
+  <div class="footer">COD-SJ · Consulta inteligente · Fuentes abiertas · No incluir información sensible o datos de causas.</div>
 </div>
 
 <script>
 const greetings = [
-  "¿Cómo puedo ayudarte hoy?",
-  "¿Qué estás buscando?",
-  "Haga su consulta aquí",
-  "¿Leemos algo de interés?",
-  "¿Qué estás investigando?",
-  "¿Hay alguna novedad?",
-  "¿Buscamos coincidencias?",
-  "¿Por dónde empezamos?",
-  "¿Qué dato querés consultar?",
-  "¿Qué se sabe públicamente sobre esto?"
+  "¿Cómo puedo ayudarte hoy?","¿Qué estás buscando?","Haga su consulta aquí","¿Leemos algo de interés?",
+  "¿Qué estás investigando?","¿Hay alguna novedad?","¿Buscamos coincidencias?","¿Por dónde empezamos?",
+  "¿Qué dato querés consultar?","¿Qué se sabe públicamente sobre esto?"
 ];
 
 const localSources = [
-  ["Diario de Cuyo","diariodecuyo.com.ar"],
-  ["Tiempo de San Juan","tiempodesanjuan.com"],
-  ["0264 Noticias","0264noticias.com.ar"],
-  ["Diario Huarpe","diariohuarpe.com"],
-  ["Canal 13 San Juan","canal13sanjuan.com"],
-  ["Zonda Diario","diariozonda.com.ar"]
+  ["Diario de Cuyo","diariodecuyo.com.ar"],["Tiempo de San Juan","tiempodesanjuan.com"],["0264 Noticias","0264noticias.com.ar"],
+  ["Diario Huarpe","diariohuarpe.com"],["Canal 13 San Juan","canal13sanjuan.com"],["Zonda Diario","diariozonda.com.ar"]
 ];
-
 const regionalSources = [
-  ["Los Andes","losandes.com.ar"],
-  ["MDZ Online","mdzol.com"],
-  ["Diario UNO","diariouno.com.ar"],
-  ["El Chorrillero","elchorrillero.com"],
-  ["Nueva Rioja","nuevarioja.com.ar"]
+  ["Los Andes","losandes.com.ar"],["MDZ Online","mdzol.com"],["Diario UNO","diariouno.com.ar"],["El Chorrillero","elchorrillero.com"],["Nueva Rioja","nuevarioja.com.ar"]
 ];
-
 const nationalSources = [
-  ["Infobae","infobae.com"],
-  ["La Nación","lanacion.com.ar"],
-  ["Clarín","clarin.com"],
-  ["TN","tn.com.ar"],
-  ["Perfil","perfil.com"]
+  ["Infobae","infobae.com"],["La Nación","lanacion.com.ar"],["Clarín","clarin.com"],["TN","tn.com.ar"],["Perfil","perfil.com"]
 ];
-
 const officialSources = [
-  ["Poder Judicial SJ","jussanjuan.gov.ar"],
-  ["Boletín Oficial SJ","boletinoficial.sanjuan.gob.ar"],
-  ["CIJ","cij.gov.ar"],
-  ["Boletín Oficial Nación","boletinoficial.gob.ar"],
-  ["Argentina.gob.ar","argentina.gob.ar"]
+  ["Poder Judicial SJ","jussanjuan.gov.ar"],["Boletín Oficial SJ","boletinoficial.sanjuan.gob.ar"],["CIJ","cij.gov.ar"],["Boletín Oficial Nación","boletinoficial.gob.ar"],["Argentina.gob.ar","argentina.gob.ar"]
 ];
 
 function updateClock(){
   const d = new Date();
   document.getElementById("clock").innerText = d.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"});
-  document.getElementById("dateText").innerText = d.toLocaleDateString("es-AR",{
-    weekday:"long", day:"2-digit", month:"long", year:"numeric"
-  });
+  document.getElementById("dateText").innerText = d.toLocaleDateString("es-AR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
 }
-
 function setGreeting(){
-  const g = greetings[Math.floor(Math.random()*greetings.length)];
-  document.getElementById("greeting").innerText = g;
+  document.getElementById("greeting").innerText = greetings[Math.floor(Math.random()*greetings.length)];
 }
-
+function weatherTextFromCode(code){
+  const map={0:"despejado",1:"mayormente despejado",2:"parcialmente nublado",3:"nublado",45:"niebla",48:"niebla",51:"llovizna",53:"llovizna",55:"llovizna",61:"lluvia",63:"lluvia",65:"lluvia intensa",80:"chaparrones",81:"chaparrones",82:"chaparrones fuertes"};
+  return map[code] || "clima";
+}
 async function loadWeather(){
-  const weather = document.getElementById("weather");
+  const weather=document.getElementById("weather");
   try{
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=-31.5375&longitude=-68.5364&current=temperature_2m,apparent_temperature,weather_code&timezone=America%2FArgentina%2FSan_Juan";
-    const res = await fetch(url);
-    const data = await res.json();
-    const temp = Math.round(data.current.temperature_2m);
-    const feel = Math.round(data.current.apparent_temperature);
-    weather.innerText = "San Juan · " + temp + "°C · ST " + feel + "°C";
-  }catch(e){
-    weather.innerText = "San Juan · clima no disponible";
-  }
+    const url="https://api.open-meteo.com/v1/forecast?latitude=-31.5375&longitude=-68.5364&current=temperature_2m,apparent_temperature,weather_code&timezone=auto";
+    const res=await fetch(url);
+    if(!res.ok) throw new Error("Sin respuesta");
+    const data=await res.json();
+    const temp=Math.round(data.current.temperature_2m);
+    const feel=Math.round(data.current.apparent_temperature);
+    const desc=weatherTextFromCode(data.current.weather_code);
+    weather.innerText="San Juan · "+temp+"°C · ST "+feel+"°C · "+desc;
+  }catch(e){ weather.innerText="San Juan · clima no disponible"; }
 }
-
 function detectType(q){
-  const clean = q.trim();
-  if(/^[A-Z]{2}[0-9]{3}[A-Z]{2}$/i.test(clean) || /^[A-Z]{3}[0-9]{3}$/i.test(clean)) return "Dominio vehicular";
+  const clean=q.trim();
+  if(/^[A-Z]{2}[0-9]{3}[A-Z]{2}$/i.test(clean)||/^[A-Z]{3}[0-9]{3}$/i.test(clean)) return "Dominio vehicular";
   if(/^[0-9]{14,16}$/.test(clean)) return "IMEI / identificador numérico";
   if(/^[0-9]{8,13}$/.test(clean)) return "Teléfono / número";
-  if(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(clean)) return "Email";
-  if(/^https?:\\/\\//i.test(clean) || /^[a-z0-9.-]+\\.[a-z]{2,}$/i.test(clean)) return "Dominio / URL";
-  if(clean.split(" ").length >= 2) return "Nombre, frase o entidad";
+  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean)) return "Email";
+  if(/^https?:\/\//i.test(clean)||/^[a-z0-9.-]+\.[a-z]{2,}$/i.test(clean)) return "Dominio / URL";
+  if(clean.split(" ").length>=2) return "Nombre, frase o entidad";
   return "Palabra clave / alias";
 }
-
-function googleUrl(query){
-  return "https://www.google.com/search?q=" + encodeURIComponent(query);
-}
-
-function addLink(box, label, query){
-  const a = document.createElement("a");
-  a.href = googleUrl(query);
-  a.target = "_blank";
-  a.textContent = label;
+function googleUrl(query){ return "https://www.google.com/search?q="+encodeURIComponent(query); }
+function addLink(box,label,query){
+  const a=document.createElement("a");
+  a.href=googleUrl(query);
+  a.target="_blank";
+  a.textContent=label;
   box.appendChild(a);
 }
-
+function addSection(parent,title,items,q){
+  const section=document.createElement("div");
+  section.className="result-section";
+  const h=document.createElement("h3");
+  h.textContent=title;
+  const grid=document.createElement("div");
+  grid.className="result-grid";
+  items.forEach(([name,site])=>addLink(grid,"Buscar en "+name,'site:'+site+' "'+q+'"'));
+  section.appendChild(h);
+  section.appendChild(grid);
+  parent.appendChild(section);
+}
+function addAction(parent,label,query){
+  const a=document.createElement("a");
+  a.href=googleUrl(query);
+  a.target="_blank";
+  a.textContent=label;
+  parent.appendChild(a);
+}
 function investigate(){
-  const q = document.getElementById("query").value.trim();
-  if(!q){ alert("Ingresá primero una consulta."); return; }
+  const q=document.getElementById("query").value.trim();
+  if(!q){alert("Ingresá primero una consulta.");return;}
 
-  const type = detectType(q);
-  const panel = document.getElementById("results");
-  const box = document.getElementById("resultLinks");
+  const type=detectType(q);
+  const panel=document.getElementById("results");
+  const sections=document.getElementById("resultSections");
+  const actions=document.getElementById("quickActions");
 
-  document.getElementById("queryLabel").innerText = q;
-  document.getElementById("typeLabel").innerText = type;
-  box.innerHTML = "";
+  document.getElementById("queryLabel").innerText=q;
+  document.getElementById("typeLabel").innerText=type;
+  sections.innerHTML="";
+  actions.innerHTML="";
 
-  addLink(box, "Búsqueda general en Google", '"' + q + '"');
-  addLink(box, "Buscar en medios de San Juan", '"' + q + '" (site:diariodecuyo.com.ar OR site:tiempodesanjuan.com OR site:0264noticias.com.ar OR site:diariohuarpe.com OR site:canal13sanjuan.com OR site:diariozonda.com.ar)');
-  addLink(box, "Buscar en Región Cuyo", '"' + q + '" (site:losandes.com.ar OR site:mdzol.com OR site:diariouno.com.ar OR site:elchorrillero.com OR site:nuevarioja.com.ar)');
-  addLink(box, "Buscar en medios nacionales", '"' + q + '" (site:infobae.com OR site:lanacion.com.ar OR site:clarin.com OR site:tn.com.ar OR site:perfil.com)');
-  addLink(box, "Buscar en organismos oficiales", '"' + q + '" (site:jussanjuan.gov.ar OR site:boletinoficial.sanjuan.gob.ar OR site:cij.gov.ar OR site:boletinoficial.gob.ar OR site:argentina.gob.ar)');
-  addLink(box, "Buscar en redes sociales", '"' + q + '" (site:facebook.com OR site:instagram.com OR site:tiktok.com OR site:x.com OR site:linkedin.com)');
+  addAction(actions,"Todo San Juan",'"'+q+'" (site:diariodecuyo.com.ar OR site:tiempodesanjuan.com OR site:0264noticias.com.ar OR site:diariohuarpe.com OR site:canal13sanjuan.com OR site:diariozonda.com.ar)');
+  addAction(actions,"Todo Cuyo",'"'+q+'" (site:losandes.com.ar OR site:mdzol.com OR site:diariouno.com.ar OR site:elchorrillero.com OR site:nuevarioja.com.ar)');
+  addAction(actions,"Todo Nación",'"'+q+'" (site:infobae.com OR site:lanacion.com.ar OR site:clarin.com OR site:tn.com.ar OR site:perfil.com)');
+  addAction(actions,"Web general",'"'+q+'"');
 
-  localSources.forEach(([name,site]) => addLink(box, "Buscar en " + name, 'site:' + site + ' "' + q + '"'));
+  const general=document.createElement("div");
+  general.className="result-section";
+  general.innerHTML='<h3>🌐 Búsqueda general automática</h3>';
+  const generalGrid=document.createElement("div");
+  generalGrid.className="result-grid";
+  addLink(generalGrid,"Búsqueda exacta en Google",'"'+q+'"');
+  addLink(generalGrid,"Noticias recientes",'"'+q+'" noticia OR actualidad OR policial OR judicial');
+  addLink(generalGrid,"Redes sociales",'"'+q+'" (site:facebook.com OR site:instagram.com OR site:tiktok.com OR site:x.com OR site:linkedin.com)');
+  addLink(generalGrid,"Organismos oficiales",'"'+q+'" (site:jussanjuan.gov.ar OR site:boletinoficial.sanjuan.gob.ar OR site:cij.gov.ar OR site:boletinoficial.gob.ar OR site:argentina.gob.ar)');
+  general.appendChild(generalGrid);
+  sections.appendChild(general);
 
-  if(type === "Dominio vehicular"){
-    addLink(box, "DNRPA - radicación por patente", "DNRPA radicación patente " + q);
-    addLink(box, "Informe de dominio automotor", "informe dominio automotor " + q);
+  addSection(sections,"📰 Medios de San Juan",localSources,q);
+  addSection(sections,"🗺️ Región Cuyo",regionalSources,q);
+  addSection(sections,"🇦🇷 Medios nacionales",nationalSources,q);
+  addSection(sections,"⚖️ Judicial y organismos oficiales",officialSources,q);
+
+  if(type==="Dominio vehicular"){
+    const s=document.createElement("div");s.className="result-section";s.innerHTML="<h3>🚗 Dominio vehicular detectado</h3>";
+    const g=document.createElement("div");g.className="result-grid";
+    addLink(g,"DNRPA - radicación por patente","DNRPA radicación patente "+q);
+    addLink(g,"Informe de dominio automotor","informe dominio automotor "+q);
+    addLink(g,"Informe histórico automotor","informe histórico dominio automotor "+q);
+    s.appendChild(g);sections.appendChild(s);
   }
-
   if(type.includes("Teléfono")){
-    addLink(box, "Buscar teléfono en web", '"' + q + '" teléfono OR WhatsApp');
+    const s=document.createElement("div");s.className="result-section";s.innerHTML="<h3>📱 Teléfono detectado</h3>";
+    const g=document.createElement("div");g.className="result-grid";
+    addLink(g,"Buscar número exacto",'"'+q+'"');
+    addLink(g,"Buscar número con WhatsApp",'"'+q+'" WhatsApp');
+    addLink(g,"Buscar número en redes",'"'+q+'" (site:facebook.com OR site:instagram.com OR site:tiktok.com)');
+    s.appendChild(g);sections.appendChild(s);
   }
-
   if(type.includes("Email")){
-    addLink(box, "Buscar email en web", '"' + q + '" email OR correo');
-    addLink(box, "Have I Been Pwned", "Have I Been Pwned " + q);
+    const s=document.createElement("div");s.className="result-section";s.innerHTML="<h3>📧 Email detectado</h3>";
+    const g=document.createElement("div");g.className="result-grid";
+    addLink(g,"Buscar email exacto",'"'+q+'"');
+    addLink(g,"Have I Been Pwned","Have I Been Pwned "+q);
+    addLink(g,"Email en redes y web",'"'+q+'" email OR contacto');
+    s.appendChild(g);sections.appendChild(s);
   }
-
   if(type.includes("Dominio / URL")){
-    addLink(box, "VirusTotal", "VirusTotal " + q);
-    addLink(box, "URLScan", "urlscan " + q);
-    addLink(box, "Whois / dominio", "whois " + q);
+    const s=document.createElement("div");s.className="result-section";s.innerHTML="<h3>🌐 Dominio / URL detectado</h3>";
+    const g=document.createElement("div");g.className="result-grid";
+    addLink(g,"VirusTotal","VirusTotal "+q);
+    addLink(g,"URLScan","urlscan "+q);
+    addLink(g,"WHOIS","whois "+q);
+    addLink(g,"Wayback Machine","web archive "+q);
+    s.appendChild(g);sections.appendChild(s);
   }
 
   panel.classList.add("active");
-  panel.scrollIntoView({behavior:"smooth", block:"nearest"});
+  panel.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-
 function searchInSite(site,name){
-  const current = document.getElementById("query").value.trim();
-  const q = current || prompt("¿Qué querés buscar en " + name + "?");
-  if(q){
-    window.open(googleUrl('site:' + site + ' "' + q + '"'), "_blank");
-  }
+  const current=document.getElementById("query").value.trim();
+  const q=current || prompt("¿Qué querés buscar en "+name+"?");
+  if(q) window.open(googleUrl('site:'+site+' "'+q+'"'),"_blank");
 }
-
-updateClock();
-setInterval(updateClock,1000);
-setGreeting();
-loadWeather();
+updateClock();setInterval(updateClock,1000);setGreeting();loadWeather();
 </script>
 </body>
 </html>
