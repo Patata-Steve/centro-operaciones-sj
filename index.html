@@ -12,26 +12,15 @@
   --green:#25d366; --red:#ff4d4d; --blue:#38bdf8;
 }
 *{box-sizing:border-box}
-body{
-  margin:0; font-family:Arial,Helvetica,sans-serif;
-  background:radial-gradient(circle at top,#16263c 0,#090d14 42%,#03060b 100%);
-  color:var(--text);
-}
-header{
-  height:72px; display:flex; align-items:center; justify-content:space-between;
-  padding:0 24px; background:#090d14; border-bottom:1px solid var(--line);
-  position:sticky; top:0; z-index:20;
-}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,#16263c 0,#090d14 42%,#03060b 100%);color:var(--text)}
+header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:#090d14;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
 .logo{display:flex;align-items:center;gap:12px}
 .eye{width:38px;height:24px;border:3px solid var(--orange);border-radius:50%;position:relative}
 .eye:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;background:var(--orange);border-radius:50%}
 .logo h1{font-size:24px;margin:0;letter-spacing:.5px}.logo span{color:var(--orange)}
 .status{display:flex;gap:18px;align-items:center;color:var(--muted);font-weight:bold;font-size:14px}.status b{color:var(--green)}
 .layout{display:grid;grid-template-columns:280px 1fr 330px;gap:16px;padding:16px}
-.panel{
-  background:linear-gradient(180deg,var(--panel),#0c121c); border:1px solid var(--line);
-  border-radius:16px; box-shadow:0 18px 40px rgba(0,0,0,.30); overflow:hidden;
-}
+.panel{background:linear-gradient(180deg,var(--panel),#0c121c);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.30);overflow:hidden}
 .panel h2{margin:0;padding:14px 16px;font-size:17px;border-bottom:1px solid var(--line)}
 .panel h2:before{content:"";display:inline-block;width:4px;height:18px;background:var(--orange);margin-right:9px;vertical-align:middle;border-radius:8px}
 .content{padding:14px}
@@ -50,19 +39,17 @@ header{
 input,select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#0a1019;color:var(--text);outline:none}
 button{border:0;background:linear-gradient(90deg,var(--orange),var(--orange2));color:#081018;padding:13px;border-radius:12px;font-weight:900;cursor:pointer}
 button:hover{filter:brightness(1.08)}
-.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.quick-grid a{display:block;text-align:center;text-decoration:none;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--line);padding:12px;border-radius:12px;font-weight:bold}
-.quick-grid a:hover{border-color:var(--orange);background:rgba(255,159,28,.09)}
+.quick-grid,.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.quick-grid a,.result-grid a{display:block;text-align:center;text-decoration:none;color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--line);padding:12px;border-radius:12px;font-weight:bold}
+.quick-grid a:hover,.result-grid a:hover{border-color:var(--orange);background:rgba(255,159,28,.09)}
+.result-grid{grid-template-columns:1fr;margin-top:10px}
 .lower{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
 .resource a{display:block;color:var(--text);text-decoration:none;padding:11px;margin:8px 0;border-radius:10px;background:rgba(255,255,255,.035);border:1px solid transparent;font-weight:bold}
 .resource a:hover{border-color:var(--orange)}
 .console{background:#05080d;border:1px solid var(--line);border-radius:12px;padding:12px;font-family:Consolas,monospace;color:#d8e4f5;font-size:13px;line-height:1.65;max-height:180px;overflow:auto}
 .console .ok{color:var(--green)} .console .warn{color:var(--orange)} .console .info{color:var(--blue)}
 footer{text-align:center;padding:20px;color:var(--muted);font-size:13px}
-@media(max-width:1100px){
-  .layout{grid-template-columns:1fr}.monitor{grid-template-columns:1fr}.lower{grid-template-columns:1fr}
-  header{height:auto;align-items:flex-start;gap:10px;flex-direction:column;padding:16px}.status{flex-wrap:wrap}
-}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.monitor{grid-template-columns:1fr}.lower{grid-template-columns:1fr}header{height:auto;align-items:flex-start;gap:10px;flex-direction:column;padding:16px}.status{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -97,7 +84,7 @@ footer{text-align:center;padding:20px;color:var(--muted);font-size:13px}
 
     <section class="panel" style="margin-top:16px">
       <h2>Consola de monitoreo</h2>
-      <div class="content"><div class="console" id="console"><div><span class="ok">●</span> Sistema iniciado correctamente.</div><div><span class="info">●</span> Fuentes cargadas: San Juan, Cuyo, Nación, Internacional.</div><div><span class="warn">●</span> Módulo de coincidencias listo para búsqueda manual.</div></div></div>
+      <div class="content"><div class="console" id="console"><div><span class="ok">●</span> Sistema iniciado correctamente.</div><div><span class="info">●</span> Kit multifuente corregido: ahora genera enlaces, no pestañas bloqueadas.</div><div><span class="warn">●</span> Abrí cada fuente desde el panel de resultados.</div></div></div>
     </section>
 
     <div class="lower">
@@ -114,25 +101,54 @@ footer{text-align:center;padding:20px;color:var(--muted);font-size:13px}
       <input id="term" placeholder="Palabra, nombre, alias, teléfono, IMEI...">
       <select id="scope"><option value="sj">San Juan</option><option value="cuyo">Cuyo</option><option value="arg">Argentina</option><option value="global">Global</option><option value="redes">Redes sociales</option></select>
       <button onclick="monitor()">MONITOREAR</button>
-      <button onclick="openMulti()" style="background:#1f2c40;color:white;border:1px solid var(--line)">ABRIR KIT MULTIFUENTE</button>
-      <div class="console"><div><span class="info">Ejemplos:</span></div><div>Mercado Pago</div><div>IPV</div><div>allanamiento</div><div>264...</div><div>nombre o alias</div></div>
+      <button onclick="buildMulti()" style="background:#1f2c40;color:white;border:1px solid var(--line)">GENERAR KIT MULTIFUENTE</button>
+      <div id="multiResults" class="result-grid"></div>
+      <div class="console"><div><span class="info">Ejemplos:</span></div><div>Mercado Pago</div><div>IPV</div><div>Barrio Valle Grande</div><div>264...</div><div>nombre o alias</div></div>
     </div>
     <h2 style="margin-top:10px">Accesos rápidos</h2>
     <div class="content quick-grid"><a href="https://www.google.com/maps" target="_blank">Maps</a><a href="https://earth.google.com/web/" target="_blank">Earth</a><a href="https://www.google.com/advanced_search" target="_blank">Google</a><a href="https://yandex.com/images/" target="_blank">Yandex</a><a href="https://www.shodan.io" target="_blank">Shodan</a><a href="https://search.censys.io" target="_blank">Censys</a></div>
   </aside>
 </div>
 
-<footer>COD-SJ · Sala de Monitoreo · Versión 3.0 preliminar · Fuentes abiertas</footer>
+<footer>COD-SJ · Sala de Monitoreo · Versión 3.1 · Kit multifuente corregido</footer>
 
 <script>
 function tick(){const d=new Date();document.getElementById("clock").innerText=d.toLocaleDateString("es-AR")+" | "+d.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"});}
 setInterval(tick,1000);tick();
 function log(msg,type="info"){const c=document.getElementById("console");const cls=type==="ok"?"ok":type==="warn"?"warn":"info";c.innerHTML += `<div><span class="${cls}">●</span> ${msg}</div>`;c.scrollTop=c.scrollHeight;}
-function openGoogle(q){window.open("https://www.google.com/search?q="+encodeURIComponent(q),"_blank");}
+function searchUrl(q){return "https://www.google.com/search?q="+encodeURIComponent(q);}
+function openGoogle(q){window.open(searchUrl(q),"_blank");}
 function fastSearch(q){log("Búsqueda rápida: "+q,"ok");openGoogle(q);}
 function sitePrompt(site){const t=prompt("Ingresá palabra/frase para buscar en "+site);if(t){log("Match en "+site+": "+t,"ok");openGoogle("site:"+site+" "+'"'+t+'"');}}
 function monitor(){const t=document.getElementById("term").value.trim();const s=document.getElementById("scope").value;if(!t){alert("Ingresá primero un término.");return}let q=t;if(s==="sj")q=`"${t}" San Juan site:diariodecuyo.com.ar OR site:tiempodesanjuan.com OR site:0264noticias.com.ar OR site:canal13sanjuan.com`;if(s==="cuyo")q=`"${t}" San Juan OR Mendoza OR San Luis OR La Rioja`;if(s==="arg")q=`"${t}" Argentina`;if(s==="global")q=`"${t}"`;if(s==="redes")q=`"${t}" site:facebook.com OR site:instagram.com OR site:tiktok.com OR site:x.com OR site:linkedin.com`;log("Monitor de interés ["+s+"]: "+t,"ok");openGoogle(q);}
-function openMulti(){const t=document.getElementById("term").value.trim();if(!t){alert("Ingresá primero un término.");return}log("Kit multifuente iniciado: "+t,"warn");["diariodecuyo.com.ar","tiempodesanjuan.com","0264noticias.com.ar","canal13sanjuan.com","losandes.com.ar","infobae.com"].forEach(site=>openGoogle("site:"+site+" "+'"'+t+'"'));}
+function buildMulti(){
+  const t=document.getElementById("term").value.trim();
+  if(!t){alert("Ingresá primero un término.");return}
+  const sources=[
+    ["Diario de Cuyo","diariodecuyo.com.ar"],
+    ["Tiempo de San Juan","tiempodesanjuan.com"],
+    ["0264 Noticias","0264noticias.com.ar"],
+    ["Canal 13 SJ","canal13sanjuan.com"],
+    ["Los Andes","losandes.com.ar"],
+    ["Infobae","infobae.com"]
+  ];
+  const box=document.getElementById("multiResults");
+  box.innerHTML="";
+  sources.forEach(([name,site])=>{
+    const a=document.createElement("a");
+    a.href=searchUrl("site:"+site+" "+'"'+t+'"');
+    a.target="_blank";
+    a.textContent="Buscar en "+name;
+    box.appendChild(a);
+  });
+  const all=document.createElement("a");
+  all.href=searchUrl('"'+t+'" (site:diariodecuyo.com.ar OR site:tiempodesanjuan.com OR site:0264noticias.com.ar OR site:canal13sanjuan.com OR site:losandes.com.ar OR site:infobae.com)');
+  all.target="_blank";
+  all.textContent="Buscar en TODAS las fuentes";
+  all.style.background="rgba(255,159,28,.18)";
+  box.prepend(all);
+  log("Kit multifuente generado para: "+t,"ok");
+}
 </script>
 </body>
 </html>
